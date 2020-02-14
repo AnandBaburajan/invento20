@@ -9,21 +9,49 @@
             <!-- COLLECTION STARTS -->
 			{% if events %}
             <div class="collection">
+
                   <p id="heading">General Events</p>
 
                   <div class="section prod-list">
                         <div class="container-fluid">
                               <div class="row some-cards">
-									{% for workshop in events %}
+                  {% for workshop in events %}
+                  {% if workshop.imageurl %}
                                     <div class="col-lg-3 prod wow fadeInUp" data-wow-delay="0.5s">
-                                          <div class="prod-holder">
-                                          <a href="/events/{{ workshop.pk }}">
-                                                <img src="{% static 'invento19/images/hot-air-balloon.jpg' %}" alt="">
-                                                <p id="price"> {{ workshop.title }} </p>
-                                                <p id="prod-desc"> {{ workshop.description }} </p>
-                                          </a>
+                                      <div class="box-container">
+                                        <div class="box-item">
+                                        <div class="flip-box">
+                                          <div class="flip-box-front text-center" style="background-image: url('{{workshop.imageurl}}');">
                                           </div>
-						</div>
+                                          <div class="flip-box-back text-center" style="background-image: linear-gradient(to right, #09203f,  #537895);
+                                          ">
+                                            <div class="inner color-white">
+                                              <h3 class="flip-box-header" style="color: #fff;">{{ workshop.title }}</h3>
+                                              <p style="color: #fff;">{{ workshop.short_desc }}</p>
+                                              <a class="btn btn-info" href="/events/{{ workshop.pk }}">Learn More</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                          <!-- <a href="/events/{{ workshop.pk }}">
+                                                <img src="https://i.imgur.com/AqpMfqj.jpg" alt="">
+                                                <p hidden id="price"> {{ workshop.title }} </p>
+                                                <p hidden id="prod-desc"> {{ workshop.short_desc }} </p>
+                                          </a>
+                                          </div> -->
+            </div>
+            {% else %}
+            <div class="col-lg-3 prod wow fadeInUp" data-wow-delay="0.5s">
+              <div class="prod-holder">
+              <a href="/events/{{ workshop.pk }}">
+                    <img src="{{ workshop.imageurl }}" alt="">
+                    <p id="price"> {{ workshop.title }} </p>
+                    <p id="prod-desc"> {{ workshop.short_desc }} </p>
+              </a>
+              </div>
+</div>
+                  {% endif %}
 									{% endfor %}
                               </div>
                         </div>
@@ -115,6 +143,7 @@
             <!-- CATEGORIES SECTION ENDS -->
 
             <div class="whitespaces"></div>
+
             {% endblock %}
 
             <!-- FOOTER STARTS -->

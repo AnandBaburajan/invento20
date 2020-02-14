@@ -2,25 +2,25 @@
 {% load static %}
 {% block content %}
             <!-- NAVIGATION ENDS -->
-            <title>EEE Events - Invento 19</title>
+            <title>SAPTHA Events - Invento 19</title>
 
             <div class="whitespaces"></div>
 
             <!-- COLLECTION STARTS -->
-			{% if workshops %}
+			<!--{% if other %}
             <div class="collection">
-                  <p id="heading">Workshops</p>
+                  <p id="heading">Events</p>
 
                   <div class="section prod-list">
                         <div class="container-fluid">
                               <div class="row some-cards">
-									{% for workshop in workshops %}
+									{% for other in other %}
                                     <div class="col-lg-3 prod wow fadeInUp" data-wow-delay="0.5s">
                                           <div class="prod-holder">
-                                          <a href="/events/{{ workshop.pk }}">
-                                                <img src="{{ workshop.imageurl }}" alt="">
-                                                <p id="price"> {{ workshop.title }} </p>
-                                                <p id="prod-desc"> {{ workshop.short_desc | linebreaksbr }} </p>
+                                          <a href="/events/{{ other.pk }}">
+                                                <img src="{{ other.imageurl }}" alt="">
+                                                <p id="price"> {{ other.title }} </p>
+                                                <p id="prod-desc"> {{ other.short_desc | linebreaksbr }} </p>
                                           </a>
                                           </div>
 						</div>
@@ -29,9 +29,9 @@
                         </div>
                   </div>
             </div>
-			{% endif %}
+			{% endif %}-->
 
-			{% if shows %}
+			<!--{% if shows %}
             <div class="collection">
                   <p id="heading">Shows</p>
 
@@ -53,7 +53,7 @@
                         </div>
                   </div>
             </div>
-			{% endif %}
+			{% endif %}-->
 
 			{% if competitions %}
             <div class="collection">
@@ -79,7 +79,7 @@
             </div>
 			{% endif %}
 
-			{% if talks %}
+			<!--{% if talks %}
             <div class="collection">
                   <p id="heading">Talks</p>
 
@@ -101,7 +101,7 @@
                         </div>
                   </div>
             </div>
-			{% endif %}
+			{% endif %}-->
 
             <!-- COLLECTION ENDS -->
 

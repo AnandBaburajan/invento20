@@ -18,9 +18,9 @@
                                     <div class="col-lg-3 prod wow fadeInUp" data-wow-delay="0.5s">
                                           <div class="prod-holder">
                                           <a href="/events/{{ workshop.pk }}">
-                                                <img src="{% static 'invento19/images/prod-04.jpg' %}" alt="">
+                                                <img src="{{ workshop.imageurl }}" alt="">
                                                 <p id="price"> {{ workshop.title }} </p>
-                                                <p id="prod-desc"> {{ workshop.description | linebreaksbr }} </p>
+                                                <p id="prod-desc"> {{ workshop.short_desc | linebreaksbr }} </p>
                                           </a>
                                           </div>
 						</div>
@@ -42,9 +42,9 @@
                                     <div class="col-lg-3 prod wow fadeInUp" data-wow-delay="0.5s">
                                                 <div class="prod-holder">
                                                 <a href="/events/{{ show.pk }}">
-                                                      <img src="{% static 'invento19/images/prod-04.jpg' %}" alt="">
+                                                      <img src="{{ show.imageurl }}" alt="">
                                                       <p id="price"> {{ show.title }} </p>
-                                                      <p id="prod-desc"> {{ show.description | linebreaksbr }} </p>
+                                                      <p id="prod-desc"> {{ show.short_desc | linebreaksbr }} </p>
                                                 </a>
                                                 </div>
                                     </div>
@@ -66,9 +66,9 @@
                                     <div class="col-lg-3 prod wow fadeInUp" data-wow-delay="0.5s">
                                           <div class="prod-holder">
                                           <a href="/events/{{ competition.pk }}">
-                                                <img src="{% static 'invento19/images/prod-04.jpg' %}" alt="">
+                                                <img src="{{ competition.imageurl }}" alt="">
                                                 <p id="price"> {{ competition.title }} </p>
-                                                <p id="prod-desc"> {{ competition.description | linebreaksbr }} </p>
+                                                <p id="prod-desc"> {{ competition.short_desc | linebreaksbr }} </p>
                                           </a>
                                           </div>
 						</div>
@@ -90,9 +90,9 @@
                                     <div class="col-lg-3 prod wow fadeInUp" data-wow-delay="0.5s">
                                           <div class="prod-holder">
                                           <a href="/events/{{ talk.pk }}">
-                                                <img src="{% static 'invento19/images/prod-04.jpg' %}" alt="">
+                                                <img src="{{ talk.imageurl }}" alt="">
                                                 <p id="price"> {{ talk.title }} </p>
-                                                <p id="prod-desc"> {{ talk.description | linebreaksbr }} </p>
+                                                <p id="prod-desc"> {{ talk.short_desc | linebreaksbr }} </p>
                                           </a>
                                           </div>
 									</div>
@@ -104,11 +104,6 @@
 			{% endif %}
 
             <!-- COLLECTION ENDS -->
-
-            <center><img class="image img-fluid" src="{% static 'invento19/images/coming-soon.jpg' %}" alt=""></center>
-            <br>
-            <center><h2> Register as a Campus Ambassador Now <h2></center>
-            <center><a href="caportal" class="primary-btn text-uppercase">Know More</a></center>
 
 
             <div class="whitespaces"></div>

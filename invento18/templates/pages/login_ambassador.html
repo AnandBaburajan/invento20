@@ -1,0 +1,12 @@
+<html>
+<body>
+<form method="POST">
+    {% csrf_token %}
+<p>Email :
+<input type="email" name="email" id="email" required></p>
+<p>referal_code:
+<input type="number" name="referal_code" id="referal_code"></p>
+<input type="submit" value="POST"/>
+</form>
+</body>
+</html>

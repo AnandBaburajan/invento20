@@ -1,0 +1,144 @@
+{% extends 'pages/base.html' %}
+
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+  .swal2-styled {
+    padding: 0px 2em !important;
+}
+</style>
+<script>
+  $(document).ready(function(){
+    var generated = [];
+    function generateCodes(number, length) {
+    for ( var i=0; i < number; i++ ) {
+      generateCode(length);
+    }
+  //$("textarea").val(generated.join("\n"));
+  //$(".generator").addClass("generated");
+  var referal = "INVENTO"+generated;
+    //console.log(referal);
+    $("#referalcode").val(referal);
+  }
+  function generateCode(length) {
+    var text = "";
+
+    for ( var i=0; i < length; i++ ) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    if ( generated.indexOf(text) == -1 ) {
+      generated.push(text);
+    }else {
+      generateCode();
+    }
+  }
+  $(window).on("load", function(e) {
+    var num = 1,
+      len = 5;
+
+    possible  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    generateCodes(num, len);
+    return false;
+});
+});
+</script>
+<script>
+  //mobile number validation
+  jQuery(document).ready(function($){
+    $cf = $('#mobile-number');
+    $cf.blur(function(e){
+        phone = $(this).val();
+        phone = phone.replace(/[^0-9]/g,'');
+        if (phone.length != 10)
+        {
+            alert('Phone number must be 10 digits.');
+            $('#mobile-number').val('');
+           // $('#mobile-number').focus();
+        }
+    });
+});
+</script>
+<script>
+  //Register Form
+  $(document).on('submit','#ambassador_register_form', function(e) {
+    // AJAX POST
+    e.preventDefault();
+    //console.log('am i called');
+        $.ajax({
+            type: 'POST',
+            url: '/ambassador-register/',
+            data: {
+              first_name : $('#first-name').val(),
+              last_name : $('#last-name').val(),
+              email : $('#email').val(),
+              phone : $('#mobile-number').val(),
+              college : $('#college').val(),
+              department : $('#department').val(),
+              referal_code : $('#referalcode').val(),
+              csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+             },
+            success: function(referal_code) {
+              Swal.fire({
+                icon: 'success',
+                title: ''+$('#referalcode').val(),
+                text: 'Save Your Referal Code.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+              }).then((result) => {
+                if (result.value) {
+              window.location = '/';
+            }
+          });
+          }
+        });
+
+    });
+</script>
+<div class="page-content">
+    <div class="form-v9-content" style="background-image: url({% static 'invento19/images/form-v9.jpg' %});">
+      <form class="form-detail" id="ambassador_register_form" action="" method="post">{% csrf_token %}
+      <h2 style="color: #fff;">Registration Form</h2>
+      <div class="form-row-total">
+        <div class="form-row">
+          <input type="text" name="first-name" id="first-name" class="input-text" placeholder="First Name" required>
+        </div>
+        <div class="form-row">
+          <input type="text" name="last-name" id="last-name" class="input-text" placeholder="Last Name" required>
+        </div>
+      </div>
+      <div class="form-row-total">
+        <div class="form-row">
+          <input type="text" name="email" id="email" class="input-text" placeholder="Your Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+        </div>
+        <div class="form-row">
+          <input type="number" name="mobile-number" id="mobile-number" class="input-text" placeholder="Mobile Number" required>
+        </div>
+      </div>
+              <div class="form-row-total">
+        <div class="form-row">
+          <input type="text" name="college" id="college" class="input-text" placeholder="Your College" required>
+        </div>
+        <div class="form-row">
+          <input type="text" name="department" id="department" class="input-text" placeholder=" Your Department" required>
+        </div>
+      </div>
+      <div class="form-row-total">
+        <div class="form-row">
+          <input type="text" name="referalcode" id="referalcode" class="input-text" placeholder="Referal Code" hidden>
+        </div>
+        <!-- <div class="form-row">
+          <input type="text" name="text" id="department" class="input-text" placeholder=" Your Department" required>
+        </div> -->
+      </div>
+      <div class="form-row-last">
+        <input type="submit" name="register" class="register" value="Register">
+      </div>
+    </form>
+    </div>
+</div>
+
+{% endblock %}

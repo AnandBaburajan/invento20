@@ -1,0 +1,20 @@
+<html>
+<body>
+<form method="POST">
+    {% csrf_token %}
+<p>first_name:
+<input id="first_name" type="text" name="first_name" maxlength="100" required></p>
+<p>last_name:
+<input name="last_name" id="last_name" required></p>
+<p>Email :
+<input type="email" name="email" id="email" required></p>
+<p>phone:
+<input type="number" name="phone" id="phone"></p>
+<p>college:
+<input id="college" type="text" name="college" maxlength="100" required></p>
+<p>department:
+<input name="department" id="department" required></p>
+<input type="submit" value="POST"/>
+</form>
+</body>
+</html>
